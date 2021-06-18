@@ -1,9 +1,14 @@
 pipeline {
-    agent { docker { image 'maven:3.3.3' } }
+    agent any
     stages {
-        stage('build') {
+        stage('Compile') {
             steps {
-                sh 'mvn --version'
+                sh './gradlew compileJava'
+            }
+        }
+        stage('Unit test') {
+            steps {
+                sh './gradlew test'
             }
         }
     }
